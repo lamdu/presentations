@@ -4,7 +4,7 @@ Without sounding to tacky, Lamdu really is a groundbreaking project which includ
 
 This is an area where we are looking for collaborators, as the current Lamdu team doesn't consist of academic researchers.
 
-While we encourage researchers to get in contact with us an collaborate, you may also author papers describing them by yourself. If you do, we kindly ask to truthfully describe when discoveries originate from Lamdu, and not misrepresent them as your own.
+While we encourage researchers to get in contact with us and collaborate, we understand that people are free to author their own papers and posts describing our discoveries. If you do, we kindly ask to truthfully describe when discoveries originate from Lamdu, and not misrepresent them as your own.
 
 ## Papers on features currently implemented in Lamdu
 
