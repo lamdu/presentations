@@ -5,6 +5,7 @@ This repo's purpose is to write/plan Lamdu's:
 * Scripts for [videos](https://www.youtube.com/channel/UCgvPEOFglvS4_ZEHi-PEctQ)
 * Blog posts
 * Academic papers
+* [Lamdu's website](http://www.lamdu.org) contents
 * [Tweets](https://twitter.com/LamduProject)
 
 ## Help us!
