@@ -22,7 +22,7 @@ Lamdu has a novel interface for type mismatches / "errors":
 Lamdu's use of projectional editing enables its support of localization - editing code in several natural languages (currently it only has English and Hebrew but adding more languages is easy).
 
 * Variables are not identified by names, but by hidden unique identifiers. Human readable names are displayed so code looks like normal text-based code.
-* The user may select "tags" to name variables. Otherwise Lamdu will auto-generate names for them.
+* The user may select "tags" to name variables. Otherwise Lamdu will [auto-generate names](#Automatic-name-generation) for them.
 * The tags have names in several natural languages.
 
 #### Prior art / references
@@ -31,6 +31,17 @@ Lamdu's use of projectional editing enables its support of localization - editin
 
 * MIT's scratch [has localization support](https://en.scratch-wiki.info/wiki/How_to_Translate_Scratch), however there are no user-defined names to be localized and it is not a general-purpose programming language.
 * Intentional software [briefly touches on this topic in a video presentation from 2000](https://youtu.be/tSnnfUj1XCQ?t=152). We don't have much more data on their approach (a non-publicly released closed source system) so we don't know how it is implemented.
+
+### Automatic name generation
+
+We generate automatic names using a novel approach that:
+* Avoids auto-generating colliding names
+* Generates names based on the data-type of the auto-named entity (In Future: user types specify sensible auto-names) 
+* Automatically appends disambiguation suffixes
+* Use disambiguating context to resolve ambiguity
+
+Future:
+* Names are shown as abbreviations unless they collide
 
 ### "syntax-tree": A novel approach for AST data types
 
