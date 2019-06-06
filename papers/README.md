@@ -1,6 +1,6 @@
 # Academic papers
 
-Without sounding to tacky, Lamdu really is a groundbreaking project which includes several novel inventions/discoveries which are worth writing papers about.
+Without sounding too tacky, Lamdu really is a groundbreaking project which includes several novel inventions/discoveries which are worth writing papers about.
 
 This is an area where we are looking for collaborators, as the current Lamdu team doesn't consist of academic researchers.
 
@@ -13,7 +13,7 @@ While we encourage researchers to get in contact with us and collaborate, we und
 Lamdu has a novel interface for type mismatches / "errors":
 
 * Instead of allowing entering invalid code and just reporting an error to the user, when a user enters code that would produce a type-error the mismatching part is automatically wrapped in a "Fragment" (aka "non-empty hole"). Lamdu shows the type of the expression contained in the fragment and its expected type. This way the program always type-checks.
-  * Note that this part of our approach already has [academic papers written about it](https://arxiv.org/pdf/1607.04180.pdf) by the [Hazel](http://hazel.org) project. Sadly, their paper [misrepresents Lamdu's approach](https://github.com/hazelgrove/hazelnut-popl17/issues/58) (which they adopted), possibly in order to untruthly claim credit on the concept :(
+  * Note that this part of our approach already has [academic papers written about it](https://arxiv.org/pdf/1607.04180.pdf) by the [Hazel](http://hazel.org) project. Sadly, their paper [misrepresents Lamdu's approach](https://github.com/hazelgrove/hazelnut-popl17/issues/58) (which they adopted), and does not give proper credit to Lamdu.
 * When the type of the expression in the fragment is actually what the user wants its type to be, the user can "insist" on its type via pressing the "space" key on the fragment to "push the type mismatch elsewhere". Then other terms which caused the fragment's expected type to mismatch the term get fragmented instead.
 * Lamdu has an interesting approach for API changes and type-mismatches accross definition boundaries. Each global definition invisibly stores the types of its direct dependencies. When a dependency's type changes, the definition's type inference still works with the stored old type. Updating the dependency type is an explicit action with a friendly UI which clearly shows what changed.
 
