@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: white;
+        color: black;
+      }
+      table {
+        border-collapse: collapse
+      }
+      th {
+        background-color: #ddd;
+        border: 2pt solid white;
+      }
+      td {
+        border: 2pt solid white;
+        text-align: center;
+      }
+      .lang {
+        border: 2px solid lightgray;
+      }
+      .bad {
+        background-color: #f89c9c;
+      }
+      .ok {
+        background-color: #f8f89c;
+      }
+      .good {
+        background-color: #9cf89c;
+      }
+      .emoji {
+        font-size: 200%;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th rowspan=2>Types</th>
+          <th rowspan=2>Dynamic</th>
+          <th colspan=3>Static</th>
+        </tr>
+        <tr>
+          <th>Explicit</th>
+          <th>Inferred</th>
+          <th>Friendly</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>For example</th>
+          <td class="lang">Python</td>
+          <td class="lang">Java</td>
+          <td class="lang">Haskell</td>
+          <td class="lang">Lamdu</td>
+        </tr>
+        <tr>
+          <th>Static checking & performance</th>
+          <td class="bad emoji">☹️</td>
+          <td class="good emoji">😀</td>
+          <td class="good emoji">😀</td>
+          <td class="good emoji">😀</td>
+        </tr>
+        <tr>
+          <th>Type assisted editing</th>
+          <td class="bad">Only in REPL</td>
+          <td class="ok">When the code is valid</td>
+          <td class="ok">When the code is valid</td>
+          <td class="good emoji">😀</td>
+        </tr>
+        <tr>
+          <th>Verbosity</th>
+          <td class="ok">Optionally in comments</td>
+          <td class="bad">Too Verbose</td>
+          <td class="ok">Writer decides</td>
+          <td class="good">Reader decides</td>
+        </tr>
+        <tr>
+          <th>Run despite of errors</th>
+          <td class="good emoji">😀</td>
+          <td class="bad emoji">☹️️️</td>
+          <td class="bad emoji">☹️</td>
+          <td class="good emoji">😀</td>
+        </tr>
+        <tr>
+          <th>Errors</th>
+          <td class="good">With examples</td>
+          <td class="ok">By types</td>
+          <td class="bad">Misattributed</td>
+          <td class="good">Friendly</td>
+        </tr>
+        <tr>
+          <th>Propagating API changes</th>
+          <td class="bad">Requires full test coverage</td>
+          <td class="ok">Type assisted</td>
+          <td class="bad">Uncontrolled</td>
+          <td class="good">Gradual</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
