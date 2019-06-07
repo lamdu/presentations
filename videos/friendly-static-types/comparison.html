@@ -6,18 +6,52 @@
         color: black;
       }
       table {
-        border-collapse: collapse
+        border-collapse: collapse;
+        height: 100%;
       }
       th {
         background-color: #ddd;
         border: 2pt solid white;
       }
+      .connect {
+        border: 0;
+        border-top: 2pt solid white;
+      }
+      th, td {
+        padding: 0;
+      }
+      th > label {
+        background-color: #ddd;
+      }
+      div {
+        height: 100%;
+        width: 100%;
+      }
+      label {
+        display: flex; /* Thanks https://stackoverflow.com/a/51626821/40916 */
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      }
       td {
         border: 2pt solid white;
         text-align: center;
       }
-      .lang {
-        border: 2px solid lightgray;
+      input {
+        display: none;
+      }
+      input:not(:checked) + label
+      {
+        opacity: 0;
+      }
+      input:not(:checked) + label + table + label
+      {
+        opacity: 0;
+      }
+      #debug:checked + label + table > * > * > * > input:not(:checked) + label
+      {
+        opacity: 0.5;
       }
       .bad {
         background-color: #f89c9c;
@@ -31,73 +65,232 @@
       .emoji {
         font-size: 200%;
       }
+      .reveal {
+        background-color: transparent;
+      }
     </style>
   </head>
   <body>
+    <input id="debug" type="checkbox" checked />
+    <label for="debug">Debug mode</label>
     <table>
       <thead>
         <tr>
           <th rowspan=2>Types</th>
           <th rowspan=2>Dynamic</th>
-          <th colspan=3>Static</th>
+          <th class="connect">
+            <input id="static-first" type="checkbox" checked />
+            <label for="static-first">Static</label>
+          </th>
+          <th class="connect reveal">
+            <input id="static-main" type="checkbox" />
+            <label for="static-main">Static</label>
+          </th>
+          <th class="connect reveal invis">
+            <input id="static-right" type="checkbox" />
+            <label for="static-right" />
+          </th>
         </tr>
         <tr>
           <th>Explicit</th>
-          <th>Inferred</th>
-          <th>Friendly</th>
+          <th class="reveal">
+            <input id="inf" type="checkbox" />
+            <label for="inf">Inferred</label>
+          </th>
+          <th class="reveal">
+            <input id="fri" type="checkbox" />
+            <label for="fri">Friendly</label>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>For example</th>
-          <td class="lang">Python</td>
-          <td class="lang">Java</td>
-          <td class="lang">Haskell</td>
-          <td class="lang">Lamdu</td>
+          <td>Python</td>
+          <td>Java</td>
+          <td>
+            <input id="haskell" type="checkbox" />
+            <label for="haskell">Haskell</label>
+          </td>
+          <td>
+            <input id="lamdu" type="checkbox" />
+            <label for="lamdu">Lamdu</label>
+          </td>
         </tr>
         <tr>
-          <th>Static checking & performance</th>
-          <td class="bad emoji">☹️</td>
-          <td class="good emoji">😀</td>
-          <td class="good emoji">😀</td>
-          <td class="good emoji">😀</td>
+          <th class="reveal">
+            <input id="typ" type="checkbox" />
+            <label for="typ">Static checking & performance</label>
+          </th>
+          <td>
+            <input id="dyn-typ" type="checkbox" />
+            <label for="dyn-typ" class="bad emoji">☹️</label>
+          </td>
+          <td>
+            <input id="exp-typ" type="checkbox" />
+            <label for="exp-typ" class="good emoji">😀</label>
+          </td>
+          <td>
+            <input id="inf-typ" type="checkbox" />
+            <label for="inf-typ" class="good emoji">😀</label>
+          </td>
+          <td>
+            <input id="fri-typ" type="checkbox" />
+            <label for="fri-typ" class="good emoji">😀</label>
+          </td>
         </tr>
         <tr>
-          <th>Type assisted editing</th>
-          <td class="bad">Only in REPL</td>
-          <td class="ok">When the code is valid</td>
-          <td class="ok">When the code is valid</td>
-          <td class="good emoji">😀</td>
+          <th class="reveal">
+            <input id="ass" type="checkbox" />
+            <label for="ass">
+              Type assisted editing
+            </label>
+          </th>
+          <td>
+            <input id="dyn-ass" type="checkbox" />
+            <label for="dyn-ass" class="bad">
+              Only in REPL
+            </label>
+          </td>
+          <td>
+            <input id="exp-ass" type="checkbox" />
+            <label for="exp-ass" class="good">
+              When the code is valid
+            </label>
+          </td>
+          <td>
+            <input id="inf-ass" type="checkbox" />
+            <label for="inf-ass" class="good">
+              When the code is valid
+            </label>
+          </td>
+          <td>
+            <input id="fri-ass" type="checkbox" />
+            <label for="fri-ass" class="good emoji">😀</label>
+          </td>
         </tr>
         <tr>
-          <th>Verbosity</th>
-          <td class="ok">Optionally in comments</td>
-          <td class="bad">Too Verbose</td>
-          <td class="ok">Writer decides</td>
-          <td class="good">Reader decides</td>
+          <th class="reveal">
+            <input id="ver" type="checkbox" />
+            <label for="ver">
+              Verbosity
+            </label>
+          </th>
+          <td>
+            <input id="dyn-ver" type="checkbox" />
+            <label for="dyn-ver" class="ok">
+              Optionally in comments
+            </label>
+          </td>
+          <td>
+            <input id="exp-ver" type="checkbox" />
+            <label for="exp-ver" class="bad">
+              Too Verbose
+            </label>
+          </td>
+          <td>
+            <input id="inf-ver" type="checkbox" />
+            <label for="inf-ver" class="ok">
+              Writer decides
+            </label>
+          </td>
+          <td>
+            <input id="fri-ver" type="checkbox" />
+            <label for="fri-ver" class="good">
+              Reader decides
+            </label>
+          </td>
         </tr>
         <tr>
-          <th>Run despite of errors</th>
-          <td class="good emoji">😀</td>
-          <td class="bad emoji">☹️️️</td>
-          <td class="bad emoji">☹️</td>
-          <td class="good emoji">😀</td>
+          <th class="reveal">
+            <input id="run" type="checkbox" />
+            <label for="run">
+              Run despite of errors
+            </label>
+          </th>
+          <td>
+            <input id="dyn-run" type="checkbox" />
+            <label for="dyn-run" class="good emoji">😀</label>
+          </td>
+          <td>
+            <input id="exp-run" type="checkbox" />
+            <label for="exp-run" class="bad emoji">☹️</label>
+          </td>
+          <td>
+            <input id="inf-run" type="checkbox" />
+            <label for="inf-run" class="bad emoji">☹️</label>
+          </td>
+          <td>
+            <input id="fri-run" type="checkbox" />
+            <label for="fri-run" class="good emoji">😀</label>
+          </td>
         </tr>
         <tr>
-          <th>Errors</th>
-          <td class="good">With examples</td>
-          <td class="ok">By types</td>
-          <td class="bad">Misattributed</td>
-          <td class="good">Friendly</td>
+          <th class="reveal">
+            <input id="err" type="checkbox" />
+            <label for="err">
+              Errors
+            </label>
+          </th>
+          <td>
+            <input id="dyn-err" type="checkbox" />
+            <label for="dyn-err" class="good">
+              With examples
+            </label>
+          </td>
+          <td>
+            <input id="exp-err" type="checkbox" />
+            <label for="exp-err" class="ok">
+              By types
+            </label>
+          </td>
+          <td>
+            <input id="inf-err" type="checkbox" />
+            <label for="inf-err" class="bad">
+              Misattributed
+            </label>
+          </td>
+          <td>
+            <input id="fri-err" type="checkbox" />
+            <label for="fri-err" class="good">
+              Friendly
+            </label>
+          </td>
         </tr>
         <tr>
-          <th>Propagating API changes</th>
-          <td class="bad">Requires full test coverage</td>
-          <td class="ok">Type assisted</td>
-          <td class="bad">Uncontrolled</td>
-          <td class="good">Gradual</td>
+          <th class="reveal">
+            <input id="pro" type="checkbox" />
+            <label for="pro">
+              Propagating API changes
+            </label>
+          </th>
+          <td>
+            <input id="dyn-pro" type="checkbox" />
+            <label for="dyn-pro" class="bad">
+              Requires full test coverage
+            </label>
+          </td>
+          <td>
+            <input id="exp-pro" type="checkbox" />
+            <label for="exp-pro" class="ok">
+              Type assisted
+            </label>
+          </td>
+          <td>
+            <input id="inf-pro" type="checkbox" />
+            <label for="inf-pro" class="bad">
+              Uncontrolled
+            </label>
+          </td>
+          <td>
+            <input id="fri-pro" type="checkbox" />
+            <label for="fri-pro" class="good">
+              Gradual
+            </label>
+          </td>
         </tr>
       </tbody>
     </table>
+    <label for="debug">Debug mode</label>
   </body>
 </html>
