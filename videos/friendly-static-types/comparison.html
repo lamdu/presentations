@@ -1,5 +1,6 @@
 <html>
   <head>
+    <meta charset="utf-8" />
     <style>
       body {
         background-color: white;
@@ -7,6 +8,8 @@
       }
       table {
         border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
         height: 100%;
       }
       th {
@@ -27,7 +30,7 @@
         height: 100%;
         width: 100%;
       }
-      label {
+      td > label, th>label {
         display: flex; /* Thanks https://stackoverflow.com/a/51626821/40916 */
         align-items: center;
         justify-content: center;
@@ -72,7 +75,7 @@
   </head>
   <body>
     <input id="debug" type="checkbox" checked />
-    <label for="debug">Debug mode</label>
+    <label for="debug" class="debug">Debug mode</label>
     <table>
       <thead>
         <tr>
@@ -106,11 +109,17 @@
       <tbody>
         <tr>
           <th>For example</th>
-          <td>Python</td>
-          <td>Java</td>
+          <td>
+            <img height=40px style="margin-bottom:-10px" src="https://www.python.org/static/community_logos/python-logo.png" />
+          </td>
+          <td>
+            <img height=35px style="margin-top: -15px" src="https://www.oracle.com/search/assets/ngui/u15-java-logo.png" />
+          </td>
           <td>
             <input id="haskell" type="checkbox" />
-            <label for="haskell">Haskell</label>
+            <label for="haskell">
+              <img height=25px src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Haskell-Logo.svg/440px-Haskell-Logo.svg.png" />
+            </label>
           </td>
           <td>
             <input id="lamdu" type="checkbox" />
@@ -291,6 +300,6 @@
         </tr>
       </tbody>
     </table>
-    <label for="debug">Debug mode</label>
+    <label for="debug" class="debug">Debug mode</label>
   </body>
 </html>
