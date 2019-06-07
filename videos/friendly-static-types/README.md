@@ -4,9 +4,20 @@ This video is based on [a presentation given by Eyal in a Tel-Aviv Haskell meetu
 
 It compares the pros and cons of dynamic typing like in Python to explicit static typing like in Java, then describes how type-inference like in Haskell combines benefits from both while adding new problems (misattributed and complicated type errors), and how Lamdu's approach, named "Friendly Static Typing" provides a novel new interface which combines all the benefits, at the cost of giving up free-form text editing of code.
 
-## Script
+## Current draft
 
-(Currently simply adapted from the previous presentation)
+For current rough draft with low quality audio and unpolished visuals [see here](https://www.dropbox.com/s/febl1sxfnaj6tzy/Static%20Types%20Work%20in%20Progress.mp4?dl=0).
+
+## TODOs
+
+* High quality audio
+* High quality visuals
+  * Fix misalignment artifacts in Lamdu visible in first zoomed in section
+  * Redo Lamdu captures with `--disable-lcd-rendering` to avoid color artifacts
+  * Better table with proper alignment
+* Feedback from Felix Kohlgrüber: The last example is hard to follow. Better start with working code and start modifying from there.
+
+## Script from previous presentation
 
 ### Static types vs dynamic types - the controversey
 
