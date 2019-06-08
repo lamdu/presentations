@@ -17,11 +17,11 @@
       }
       th {
         background-color: #ddd;
-        border: 2pt solid white;
+        border: 1pt solid white;
       }
       .connect {
         border: 0;
-        border-top: 2pt solid white;
+        border-top: 1pt solid white;
       }
       th, td {
         padding: 0;
@@ -41,7 +41,7 @@
         width: 100%;
       }
       td {
-        border: 2pt solid white;
+        border: 1pt solid white;
         text-align: center;
       }
       input {
@@ -63,10 +63,10 @@
         background-color: #f89c9c;
       }
       .ok {
-        background-color: #f8f89c;
+        background-color: #f8f890;
       }
       .good {
-        background-color: #9cf89c;
+        background-color: #abefab;
       }
       .emoji {
         font-size: 200%;
@@ -157,27 +157,19 @@
         <tr>
           <th class="reveal">
             <input id="ass" type="checkbox" />
-            <label for="ass">
-              Type assisted editing
-            </label>
+            <label for="ass">Type assisted editing</label>
           </th>
           <td>
             <input id="dyn-ass" type="checkbox" />
-            <label for="dyn-ass" class="bad">
-              Only in REPL
-            </label>
+            <label for="dyn-ass" class="bad">Only in REPL</label>
           </td>
           <td>
             <input id="exp-ass" type="checkbox" />
-            <label for="exp-ass" class="good">
-              When the code is valid
-            </label>
+            <label for="exp-ass" class="ok">When the code is valid</label>
           </td>
           <td>
             <input id="inf-ass" type="checkbox" />
-            <label for="inf-ass" class="good">
-              When the code is valid
-            </label>
+            <label for="inf-ass" class="ok">When the code is valid</label>
           </td>
           <td>
             <input id="fri-ass" type="checkbox" />
