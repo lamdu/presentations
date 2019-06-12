@@ -11,66 +11,119 @@ For current rough draft with low quality audio and unpolished visuals [see here]
 ## TODOs
 
 * High quality audio
-* High quality visuals
-  * Fix misalignment artifacts in Lamdu visible in first zoomed in section
-  * Redo Lamdu captures with `--disable-lcd-rendering` to avoid color artifacts
-  * Better table with proper alignment
-* Feedback from Felix Kohlgrüber: The last example is hard to follow. Better start with working code and start modifying from there.
 
-## Script from previous presentation
+## Script (for recording)
 
-### Static types vs dynamic types - the controversey
+Hi! I'm Yair and I want to show you a novel user interface for static types.
 
-* Tweet by Gabriele Petronella: ["Static types limit your creativity, but they have flaws too"](https://twitter.com/gabro27/status/1101403050449817600)
-* Comic/tweet by Kolja Wilcke: ["static vs dynamic / done!"](https://twitter.com/01k/status/1067788059989684224)
-* Pros to static types
-  * Catch bugs early
-  * Code completions / guidance
-  * Refactoring with confidence
-  * Performance
-* Cons to static types
-  * Complicated type errors
-    * **Lamdu localizes type errors - allowing execution outside of them** (demo)
-  * Program cannot run in the presence of type errors (demonstrated with "favorite things" example)
-    * In Lamdu programs can run despite type mismatches as long as they don't reach the errornous branch (demo)
-  * Verbosity
-    * Not always a bad thing
-    * Note that type inference the writers choose the desired level of verbosity
-    * Could the readers get to decide? (demo)
-    * **Lamdu empowers the reader to control the verbosity**
-  * Learning curve
+We'll start by just showing it with a simple code example.
 
-### Problem with type inference - error propagation and blame misattribution
+This is Lamdu. Lamdu is a programming environment.
+It currently shows an if expression with three holes.
+Holes are place-holders for missing code in incomplete programs.
 
-* Neil Mitchell quote: ["As always, the most useful thing in the error message is the line number."](http://neilmitchell.blogspot.com/2008/03/poor-ada-error-message.html)
-* Demo: non-empty subsets example in Haskell
-* Explain the error
-* Can anyone guess where the type error is? Reveal
-* Where is the error with verbose types? Reveal
-* Demo in Lamdu
-* **Lamdu avoids cryptic type errors by containing the error in a sensible and predictable location**
+Underneath the holes we see type annotations.
+The condition needs to be a boolean,
+and the two branches should have the same type, denoted by the matching type variable "a".
 
-### How is this possible? Projection editing
+Now let's see what happens if we type a string into the top branch.
+Lamdu now shows that the second hole should also have the type "Text".
 
-* Lamdu is not a free-form text editor for code
-* All edits preserve valid structure allowing for gapless feedback
+What would happen if we would type a number into it?
+This generates a type mismatch: Its type is "Num" but it's expected to be "Text".
+The red rectangle represents this mismatch and is called a "fragment".
 
-#### Why have previous attempts failed? Why is Lamdu different
+But what if we really want a number there?
+Lamdu lets us "insist" on this type with the close-bracket keyboard shortcut.
+This refragmented the code and placed the type mismatch on the other branch.
 
-* WYTIWYS
-* Actually reaping the benefits of projectional editing
-  * Evaluation demo
-  * Lamdu is not a general purpose editor - it has a specific language
-* **Lamdu minimizes the costs of projectional editing while reaping new benefits**
+Unlike other programming languages with type inference,
+which arbitrarily assign blame for type errors.
+Lamdu by default predictably assigns the errors to the newest code edits.
+As this isn't always the desired result,
+Lamdu empowers the user to reassign the blame to conflicting code.
 
-### Propagating API changes
+Before we expand on this more,
+let's take a step back and review common approaches to types in popular programming languages.
 
-* We've demonstrated how blame assignment works inside definitions. How does it work across them?
-* Demo
-* Lamdu stores types of dependencies
-* Mismatching dependencies require an explicit update and are not errors
-* After the update, local type mismatches may arise
+We'll start by comparing dynamic programming languages like Python and JavaScript,
+to explicitly typed languages like Java and C#.
+ 
+* Static languages catch type errors in compile time, never in production,
+  and the programs are also faster and more efficient
+* They offer type-directed completions
+* But they are quite verbose.
+* And you can't do anything with the program until you fix the type errors
+* When type errors occur, dynamic languages provide concrete examples for values -
+  making errors easier to decipher
+* While static languages like C++ and Haskell are infamous for their cryptic type errors
 
-### Summary table
+But what about statically types languages with type inference, like for example Haskell?
+These don't suffer from the verbosity of explicit static languages,
+but we pay for that in the propagation and misattribution of blame in type errors.
 
-TODO
+How are these issues addressed in what we call "Steady Typing"?
+* We enjoy the normal performance and static checking benefits of static types.
+* Type information and completions are available at all times. Let us demonstrate
+
+Here's another piece of code in Lamdu.
+It contains two holes, and Lamdu always shows type annotations for holes.
+Now let's go to the boolean hole and type in "x".
+We got a fragment because "x" is a number and we need a boolean.
+Note that unlike other static languages, the type mismatch is localized with a fragment.
+So everything is still validly typed!
+So we still see the expected types for holes.
+If we want we can also see the types of everything.
+This is quite verbose so usually we won't want to see the times as we code.
+And because this is Lamdu, we can also see the values!
+
+So types are steadily available even when the program is incomplete and has type mismatches.
+As a result type assisted editing is always available.
+And as we've also shown, the reader controls the verbosity of type information.
+
+Next - can we run code despite of type errors? Let's see!
+
+This is a simple function enumerating favorite things.
+Despite containing a type mismatch, we can still run code including this function!
+Only when evaluates reaches the mismatch, it cannot work.
+So we can run despite of errors!
+
+And as we've demonstrated in the beginning of the video,
+type mismatches have a friendly user experience.
+Type mismatches are localized in fragments
+so there are no errors, and type-based facilities are always available.
+Blame is predictably assigned,
+and the user has full control and can reassign it easily.
+
+Now, let's discuss another important topic in the debate between dynamic and static types.
+This one is related to code maintenance and refactoring.
+When we change the type of a function, how do we maintain this change across the code base?
+
+In dynamic languages - we better have a comprehensive test suite!
+That will cover every usage of the function.
+
+With static types, the compiler helps guide us to all the call that need to be updated.
+But when several functions change like when updating a library,
+the free propagation of type information with type inference can make things complicated.
+
+Can we help the user handle the API changes? Let's see.
+
+Here we see a code example.
+At the top the "sum of digits" function is called with the argument 12345,
+and the result for that is 15.
+Below it we see the definition of "sum of digits".
+It uses the "digits" function and calls the "sum" function on the result of that.
+Let's turn off the value annotations!
+They are invaluable when debugging, but they also clutter the code.
+This is nicer to look at!
+Now let's modify the "digits" function so that it works for any given base, not just base 10.
+
+As we've added the "base" parameter, a few things happened.
+One cosmetic thing that happened,
+is that Lamdu's auto-layout split the line so that the code fits within the width of the window.
+Also, as we've added the parameter, the recursive call to "digits" got the new parameter added to its call.
+
+After making this change, what would happen if we were to execute the code?
+It cannot run.
+
+**TODO**: Finish transcribing the video draft!
