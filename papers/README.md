@@ -8,7 +8,7 @@ While we encourage researchers to get in contact with us and collaborate, we und
 
 ## Papers on features currently implemented in Lamdu
 
-### Friendly static types
+### Steady typing
 
 Lamdu has a novel interface for type mismatches / "errors":
 
@@ -16,6 +16,13 @@ Lamdu has a novel interface for type mismatches / "errors":
   * Note that this part of our approach already has [academic papers written about it](https://arxiv.org/pdf/1607.04180.pdf) by the [Hazel](http://hazel.org) project. Sadly, their paper [misrepresents Lamdu's approach](https://github.com/hazelgrove/hazelnut-popl17/issues/58) (which they adopted), and does not give proper credit to Lamdu.
 * When the type of the expression in the fragment is actually what the user wants its type to be, the user can "insist" on its type via pressing the "space" key on the fragment to "push the type mismatch elsewhere". Then other terms which caused the fragment's expected type to mismatch the term get fragmented instead.
 * Lamdu has an interesting approach for API changes and type-mismatches accross definition boundaries. Each global definition invisibly stores the types of its direct dependencies. When a dependency's type changes, the definition's type inference still works with the stored old type. Updating the dependency type is an explicit action with a friendly UI which clearly shows what changed.
+
+#### The algorithm for the "insist" feature
+
+Lamdu's novel "insist" feature has [an intersting algorithm](https://github.com/lamdu/lamdu/blob/master/src/Lamdu/Sugar/Convert/Fragment/Heal.hs):
+
+* Perform type inference so that each AST node has holes instead of its children, but note that each AST node's inference has to happen in the correct scope.
+* Sorted by a priority, unify the terms to their hole place-holders one by one. For failing unifications, backtrack and put a fragment in this place. Also note that after each unification we check its result for an occurs error, and the infer context is also backtracked to before this check.
 
 ### Localization
 
