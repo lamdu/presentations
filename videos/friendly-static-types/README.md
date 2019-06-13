@@ -124,6 +124,28 @@ is that Lamdu's auto-layout split the line so that the code fits within the widt
 Also, as we've added the parameter, the recursive call to "digits" got the new parameter added to its call.
 
 After making this change, what would happen if we were to execute the code?
-It cannot run.
+It cannot run!
+This is because its evaluation calls a dependency which has changed.
 
-**TODO**: Finish transcribing the video draft!
+What does Lamdu show us here?
+When the "sum of digits" function originally called the "digits" function its argument was just a number.
+Now it gets a number and a base.
+Note that before updating its type,
+its previous type is used for type inference in the "sum of digits" function,
+allowing everything to still be validly typed.
+This allows us to update the types of our dependencies one step at a time.
+
+Note that in order to do this,
+Lamdu invisibily stores the types of all dependencies for every definition,
+unlike other programming languages that only store what you see.
+
+How can Lamdu provide all these benefits?
+Why didn't the other languages choose this approach as well?
+A key difference is that these other programming languages are based on plain text files,
+and perhaps you've noticed already, but Lamdu is not.
+Lamdu is a projectional code editor.
+We acknowledge that past attempts at creating projectional editors have not caught on,
+but unlike past attempts we focus on also retaining the benefits of text editing,
+foremost the what-you-type-is-what-you-see principle.
+For more information on that, see our previous video.
+Bye for now!
