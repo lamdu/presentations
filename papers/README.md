@@ -42,12 +42,14 @@ Lamdu's use of projectional editing enables its support of localization - editin
 ### Automatic name generation
 
 We generate automatic names using a novel approach that:
+
 * Avoids auto-generating colliding names
 * Generates names based on the data-type of the auto-named entity (In Future: user types specify sensible auto-names) 
 * Automatically appends disambiguation suffixes
 * Use disambiguating context to resolve ambiguity
 
 Future:
+
 * Names are shown as abbreviations unless they collide
 
 ### "syntax-tree": A novel approach for AST data types
