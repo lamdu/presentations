@@ -1,0 +1,107 @@
+digraph {
+    rankdir=LR
+    bgcolor="#dddddd"
+
+    node [style="filled" fontcolor="white" color=invis]
+    
+    node [fillcolor="#9977cc"]
+    goal_edu [label="Useful for\nTeaching"]
+    goal_research [label="Useful for\nResearch"]
+    goal_dev [label="Useful for\nProduction"]
+    goal_frontend [label="Useful for\nFront-end"]
+    selfhost [label="Self\nHosting"]
+
+    node [style="filled,rounded" fontcolor="white" color=invis shape=rect]
+
+    node [fillcolor="#66bbaa"]
+
+    anim [label="Animation\nEngine" shape=diamond]
+    momentu [label="UI\nframework"]
+    hypertypes [label="AST\nframework"]
+    deltum [label="Versioned\nDatabase"]
+    cache [label="Caching\nMechanism"]
+
+    node [fillcolor="#77bb66"]
+
+    projedit [label="Projectional\nEditing"]
+    typcheck [label="Type\nChecker"]
+    transpile_js [label="JS\nTranspiler"]
+    steady [label="Steady\nTyping" shape=diamond]
+    sugar [label="Syntax\nSugaring" shape=diamond]
+    layout [label="Responsive\nLayout" shape=diamond]
+    i18n [label="Localization\nSupport" shape=diamond]
+    wytiwys [label="WYTIWYS" shape=diamond]
+    naming [label="Auto-\nnaming" shape=diamond]
+    syntax [label="UX/Syntax\nDesign"]
+    
+    node [fillcolor="#bbaa33"]
+
+    live [label="Live\nProgramming"]
+    lib_base [label="Standard Library\nin Lamdu"]
+    i18n_content [label="Localization\nContent"]
+
+    node [fillcolor="#cc7777"]
+
+    backrefs [label="Back-references\nIndex"]
+    testing [label="Unit Testing\nSystem" shape=diamond]
+    typedit [label="Type\nEditing"]
+    langfull [label="Missing\nLanguage Features"]
+    compiler [label="Native Code\nCompiler"]
+    merge [label="Merging\nand branches" shape=diamond]
+    lib_graphics [label="Graphics\nLibrary"]
+    lib_math [label="Math & DSP Lib\nfor Lamdu"]
+    lib_plot [label="Diagrams Library\nfor Lamdu"]
+    codehub [label="Online\nCode Hub"]
+    ffi_c [label="C FFI"]
+
+    anim -> momentu
+    cache -> steady
+    deltum -> projedit
+    deltum -> merge
+    deltum -> testing
+    deltum -> backrefs
+    momentu -> layout
+    momentu -> projedit
+    momentu -> wytiwys
+    projedit -> live
+    projedit -> steady
+    projedit -> i18n
+    projedit -> typedit
+    projedit -> wytiwys
+    typcheck -> steady
+    transpile_js -> live
+    hypertypes -> typcheck
+    hypertypes -> sugar
+    hypertypes -> compiler
+    typedit -> langfull
+    langfull -> selfhost
+    compiler -> selfhost
+    compiler -> ffi_c
+    projedit -> lib_base
+    projedit -> naming
+    i18n -> i18n_content
+    lib_base -> lib_graphics
+    lib_base -> lib_math
+    lib_graphics -> lib_plot
+    lib_graphics -> selfhost
+    langfull -> lib_math
+    merge -> codehub
+    projedit -> syntax
+    syntax -> sugar
+    projedit -> layout
+    momentu -> i18n
+
+    i18n_content -> goal_edu
+    live -> goal_edu
+    lib_graphics -> goal_edu
+    projedit -> goal_edu
+    lib_math -> goal_research
+    lib_plot -> goal_research
+    compiler -> goal_research
+    transpile_js -> goal_frontend
+    lib_graphics -> goal_frontend
+    codehub -> goal_dev
+    ffi_c -> goal_dev
+    langfull -> goal_dev
+    testing -> goal_dev
+}

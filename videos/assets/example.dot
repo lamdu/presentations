@@ -1,0 +1,53 @@
+digraph {
+    bgcolor="black"
+
+    edge [color="#cccccc"]
+
+    node [style="filled" fontcolor="white" color=invis]
+
+    node [fillcolor="#77ff77", fontcolor="black"]
+
+    num_0 [label="0"]
+    num_1 [label="1"]
+    num_3 [label="3"]
+    num_100 [label="100"]
+
+    node [fillcolor="#ff77ff", fontcolor="black"]
+
+    sum [label="#d77be9df"]
+    filter [label="#d7dafdd0"]
+    range [label="#193690a4"]
+    mod [label="#bbf3f11c"]
+    equals [label="#f16474a9"]
+    var [label="#82678453"]
+
+    node [fillcolor="white"]
+
+    filter_args, range_args, equals_args, mod_args [label="{}"]
+
+    node [fillcolor="#ffdddd"]
+
+    apply_sum, apply_filter, apply_range, apply_equals, apply_mod [label="apply"]
+
+    lam [label="λ #82678453" fillcolor="#ffffaa"]
+
+    apply_sum -> sum
+    apply_sum -> apply_filter
+    apply_filter -> filter
+    apply_filter -> filter_args
+    filter_args -> apply_range
+    filter_args -> lam
+    apply_range -> range
+    apply_range -> range_args
+    range_args -> num_1
+    range_args -> num_100
+    lam -> apply_equals
+    apply_equals -> equals
+    apply_equals -> equals_args
+    equals_args -> apply_mod
+    equals_args -> num_0
+    apply_mod -> mod
+    apply_mod -> mod_args
+    mod_args -> var
+    mod_args -> num_3
+}
